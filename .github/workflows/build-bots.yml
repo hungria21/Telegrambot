@@ -1,0 +1,32 @@
+name: Gerar índice de bots
+
+# Gera content/bots.json automaticamente sempre que um .md muda.
+# Assim o site faz UMA requisição só, não importa quantos bots existam.
+on:
+  push:
+    paths:
+      - "content/bots/**"
+      - "build.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Compilar bots.md em bots.json
+        run: python3 build.py
+
+      - name: Commitar bots.json
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: atualiza índice de bots [skip ci]"
+          file_pattern: content/bots.json
