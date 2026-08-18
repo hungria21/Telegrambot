@@ -8,5 +8,4 @@ color: ["#FF7CA3", "#D13C74"]
 tags: [musica]
 featured: false
 ---
-
 Este bot permite baixar músicas e álbuns completos.
