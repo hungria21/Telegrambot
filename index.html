@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BuscaBots — Bots do Telegram</title>
+<meta name="description" content="Diretório independente de bots públicos do Telegram.">
+<meta name="theme-color" content="#0F1320" id="themeColorMeta">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="search-field" id="searchField">
+    <div class="squircle accent" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="6.5" stroke="white" stroke-width="2.2"/><line x1="20" y1="20" x2="15.8" y2="15.8" stroke="white" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </div>
+    <input
+      id="searchInput"
+      type="text"
+      inputmode="search"
+      autocomplete="off"
+      autocorrect="off"
+      spellcheck="false"
+      data-i18n-attr="placeholder:search.placeholder;aria-label:search.placeholder"
+      placeholder="Buscar bots do Telegram">
+    <button class="clear-btn" id="clearBtn" data-i18n-attr="aria-label:search.clear">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <button class="icon-btn settings-btn" id="settingsBtn" data-i18n-attr="aria-label:settings.title" aria-haspopup="true" aria-expanded="false">
+    <div class="squircle neutral" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z" stroke="white" stroke-width="1.8"/>
+        <path d="M19.4 12a7.4 7.4 0 0 0-.1-1.3l2-1.5-2-3.4-2.3.9a7.6 7.6 0 0 0-2.2-1.3L14.4 3H9.6l-.4 2.4a7.6 7.6 0 0 0-2.2 1.3l-2.3-.9-2 3.4 2 1.5A7.4 7.4 0 0 0 4.6 12c0 .4 0 .9.1 1.3l-2 1.5 2 3.4 2.3-.9c.7.5 1.4 1 2.2 1.3l.4 2.4h4.8l.4-2.4a7.6 7.6 0 0 0 2.2-1.3l2.3.9 2-3.4-2-1.5c.1-.4.1-.9.1-1.3Z" stroke="white" stroke-width="1.4" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </button>
+</header>
+
+<main>
+  <div class="section-label" id="sectionLabel"></div>
+  <div class="results" id="results"></div>
+
+  <div class="empty-state" id="emptyState">
+    <div class="squircle ghost" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="2"/><line x1="20" y1="20" x2="15" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="10.5" x2="13" y2="10.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </div>
+    <h2 data-i18n="empty.title"></h2>
+    <p data-i18n="empty.text"></p>
+  </div>
+</main>
+
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" data-i18n-attr="aria-label:settings.title">
+  <div class="sheet-handle"></div>
+  <h1 data-i18n="settings.title"></h1>
+
+  <div class="setting-row">
+    <div class="squircle neutral" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="white" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z" stroke="white" stroke-width="1.6"/></svg>
+    </div>
+    <div class="setting-text">
+      <div class="setting-title" data-i18n="settings.language.title"></div>
+      <div class="setting-sub" data-i18n="settings.language.sub"></div>
+      <div class="chip-row" id="langChips" role="group"></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="setting-row">
+    <div class="squircle neutral" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.3 6.3 0 0 0 10.5 10.5Z" stroke="white" stroke-width="1.7" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="setting-text">
+      <div class="setting-title" data-i18n="settings.theme.title"></div>
+      <div class="setting-sub" id="themeSub"></div>
+      <div class="chip-row" id="themeChips" role="group">
+        <button class="chip" data-theme-option="dark" data-i18n="settings.theme.dark"></button>
+        <button class="chip" data-theme-option="light" data-i18n="settings.theme.light"></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="setting-row">
+    <div class="squircle neutral" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="white" stroke-width="1.8"/><line x1="12" y1="11" x2="12" y2="16.5" stroke="white" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7.6" r="1.15" fill="white"/></svg>
+    </div>
+    <div class="setting-text">
+      <div class="setting-title" data-i18n="settings.about.title"></div>
+      <div class="about-text" data-i18n="settings.about.text"></div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/markdown.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
