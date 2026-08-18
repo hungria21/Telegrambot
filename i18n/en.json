@@ -1,6 +1,11 @@
 {
-  "meta": { "name": "English", "dir": "ltr" },
-  "site": { "title": "BuscaBots — Telegram Bots" },
+  "meta": {
+    "name": "English",
+    "dir": "ltr"
+  },
+  "site": {
+    "title": "BuscaBots — Telegram Bots"
+  },
   "search": {
     "placeholder": "Search Telegram bots",
     "clear": "Clear search"
@@ -16,7 +21,7 @@
   "loading": "Loading bots…",
   "error": {
     "title": "Could not load bots",
-    "text": "Check your connection or the content/bots/index.json file."
+    "text": "Check your connection or run the build to generate the content/bots.json file."
   },
   "settings": {
     "title": "Settings",

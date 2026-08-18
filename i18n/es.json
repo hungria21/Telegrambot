@@ -1,6 +1,11 @@
 {
-  "meta": { "name": "Español", "dir": "ltr" },
-  "site": { "title": "BuscaBots — Bots de Telegram" },
+  "meta": {
+    "name": "Español",
+    "dir": "ltr"
+  },
+  "site": {
+    "title": "BuscaBots — Bots de Telegram"
+  },
   "search": {
     "placeholder": "Buscar bots de Telegram",
     "clear": "Borrar búsqueda"
@@ -16,7 +21,7 @@
   "loading": "Cargando bots…",
   "error": {
     "title": "No se pudieron cargar los bots",
-    "text": "Revisa tu conexión o el archivo content/bots/index.json."
+    "text": "Revisa tu conexión o ejecuta el build para generar el archivo content/bots.json."
   },
   "settings": {
     "title": "Configuración",

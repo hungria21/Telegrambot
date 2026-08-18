@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+upload_state.json
+_index_temp.json
+_bots_temp.json

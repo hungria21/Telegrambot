@@ -1,21 +1,24 @@
 # BuscaBots — Diretório de bots do Telegram
 
-Site estático (sem build, sem backend) pronto para hospedar no **GitHub Pages**.
+Site estático (sem build de frontend, sem backend) pronto para hospedar no
+**GitHub Pages**, otimizado para **milhares de bots**: o site faz **uma única
+requisição** (`content/bots.json`), não importa quantas postagens existam.
 
 ## Estrutura
 
 ```
-index.html              Página principal
-assets/css/style.css    Estilos (tema claro/escuro)
-assets/js/app.js        Lógica do app (busca, tema, sheet)
-assets/js/i18n.js       Sistema de tradução
-assets/js/markdown.js   Parser de frontmatter dos posts
-i18n/pt-BR.json         Tradução português
-i18n/en.json            Tradução inglês
-i18n/es.json            Tradução espanhol
-content/bots/index.json Manifest: lista dos posts (.md) exibidos
-content/bots/*.md       Um arquivo por bot (frontmatter + texto)
-images/bots/*.png       Imagens/ícones dos bots (hospedadas no repo)
+index.html                       Página principal
+assets/css/style.css             Estilos (tema claro/escuro)
+assets/js/app.js                 Lógica do app (busca, tema, paginação)
+assets/js/i18n.js                Sistema de tradução
+assets/js/markdown.js            Parser de frontmatter (modo fallback)
+i18n/*.json                      Traduções (pt-BR, en, es)
+content/bots/*.md                Um arquivo por bot (frontmatter + texto)
+content/bots.json                Índice compilado (gerado automaticamente)
+content/bots/index.json          (Opcional) ordem manual dos posts
+images/bots/*.png                Imagens/ícones dos bots
+build.py                         Compila os .md em bots.json
+.github/workflows/build-bots.yml GitHub Action que roda o build.py no push
 ```
 
 ## Publicar no GitHub Pages
@@ -43,9 +46,28 @@ featured: true                  # true = aparece no topo ("Em alta")
 Texto livre opcional (reservado para futura página de detalhes).
 ```
 
-2. Coloque a imagem em `images/bots/meu-bot.png` (quadrada, ~256px, PNG ou JPG).
-3. Adicione `"meu-bot.md"` ao array em `content/bots/index.json`.
-4. Commit e push — o GitHub Pages atualiza sozinho.
+2. Coloque a imagem em `images/bots/meu-bot.png` (quadrada, ~256px).
+3. **Commit e push — pronto.** A GitHub Action incluída
+   (`.github/workflows/build-bots.yml`) regenera o `content/bots.json`
+   automaticamente e commita no repositório.
+
+Se preferir gerar localmente: rode `python3 build.py` antes do push.
+Não é necessário editar lista nenhuma: o build varre todos os `.md` da pasta
+(em ordem alfabética). Se quiser controlar a ordem, mantenha um
+`content/bots/index.json` com os nomes dos arquivos na ordem desejada.
+
+## Como o site escala para milhares de bots
+
+- **1 requisição**: todos os dados vêm do `content/bots.json` compilado
+  (~0,24 KB por bot → 3.000 bots ≈ 720 KB, menos que uma foto).
+- **Renderização paginada**: apenas 40 cards são desenhados por vez; ao
+  rolar, mais 40 são adicionados (rolagem infinita). 3.000 bots não travam
+  a página.
+- **Busca instantânea**: filtrada em memória por nome, @usuario, descrição
+  e tags.
+- **Fallback**: se `bots.json` não existir (ex.: testando sem rodar o
+  build), o site usa `content/bots/index.json` e lê os `.md` um a um —
+  serve só para desenvolvimento com poucos bots.
 
 ## Adicionar um novo idioma
 

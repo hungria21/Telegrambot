@@ -18,9 +18,15 @@
 
   const THEME_KEY = "bb-theme";
   const THEME_COLORS = { dark:"#0F1320", light:"#F4F6FB" };
+  const PAGE_SIZE = 40; // quantos cards renderizar por vez
 
   let bots = [];
+  let currentList = [];
+  let visibleCount = PAGE_SIZE;
+  let isSearch = false;
   let loaded = false;
+  let sentinel = null;
+  let observer = null;
 
   /* ---------- Tema ---------- */
   function applyTheme(theme){
@@ -51,44 +57,69 @@
   }
   document.addEventListener("i18n:changed", () => {
     renderLangChips();
-    applyTheme(localStorage.getItem(THEME_KEY) || "dark"); // re-atualiza o subtítulo do tema
-    if(loaded) runSearch(); // re-renderiza rótulos ("Em alta"/"Resultados")
+    applyTheme(localStorage.getItem(THEME_KEY) || "dark");
+    if(loaded) renderCurrent(); // re-renderiza rótulos ("Em alta"/"Resultados")
   });
 
-  /* ---------- Carregamento dos bots (.md) ---------- */
+  /* ---------- Carregamento dos bots ----------
+   * Caminho principal: UM fetch em content/bots.json (gerado pelo build.py
+   * ou pela GitHub Action). Fallback para desenvolvimento: manifest
+   * index.json + um fetch por .md (não usar com muitos bots).
+   */
   function escapeHtml(s){
     return String(s).replace(/[&<>"']/g, c => ({
       "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
     }[c]));
   }
 
+  function normalizeBot(d){
+    const name = String(d.name || "").trim();
+    const username = String(d.username || "").trim().replace(/^@/,"");
+    if(!name || !username) return null;
+    return {
+      name,
+      username,
+      description: String(d.description || ""),
+      stats: String(d.stats || ""),
+      image: d.image ? String(d.image) : null,
+      color: Array.isArray(d.color) && d.color.length >= 2 ? d.color.map(String) : ["#5B8DEF","#3E63C9"],
+      tags: Array.isArray(d.tags) ? d.tags.map(String) : [],
+      featured: d.featured === true
+    };
+  }
+
+  async function loadFromBundle(){
+    const res = await fetch("content/bots.json");
+    if(!res.ok) throw new Error("bundle " + res.status);
+    const list = await res.json();
+    if(!Array.isArray(list)) throw new Error("bundle inválido");
+    return list.map(normalizeBot).filter(Boolean);
+  }
+
+  async function loadFromMarkdownFiles(){
+    const manifestRes = await fetch("content/bots/index.json");
+    if(!manifestRes.ok) throw new Error("manifest " + manifestRes.status);
+    const files = await manifestRes.json();
+    const items = await Promise.all(files.map(async file => {
+      const res = await fetch("content/bots/" + encodeURIComponent(file));
+      if(!res.ok) return null;
+      const { data } = window.MD.parseFrontmatter(await res.text());
+      return normalizeBot(data);
+    }));
+    return items.filter(Boolean);
+  }
+
   async function loadBots(){
     sectionLabel.style.display = "none";
     resultsEl.innerHTML = '<div class="loading">' + escapeHtml(I18N.t("loading")) + "</div>";
     try{
-      const manifestRes = await fetch("content/bots/index.json");
-      if(!manifestRes.ok) throw new Error("manifest " + manifestRes.status);
-      const files = await manifestRes.json();
-
-      const items = await Promise.all(files.map(async file => {
-        const res = await fetch("content/bots/" + encodeURIComponent(file));
-        if(!res.ok) return null;
-        const { data } = window.MD.parseFrontmatter(await res.text());
-        if(!data.username || !data.name) return null;
-        return {
-          name: String(data.name),
-          username: String(data.username).replace(/^@/,""),
-          description: String(data.description || ""),
-          stats: String(data.stats || ""),
-          image: data.image ? String(data.image) : null,
-          color: Array.isArray(data.color) && data.color.length >= 2 ? data.color : ["#5B8DEF","#3E63C9"],
-          tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
-          featured: data.featured === true
-        };
-      }));
-
-      bots = items.filter(Boolean);
-      // Em alta primeiro, mantendo a ordem do manifest dentro de cada grupo
+      try{
+        bots = await loadFromBundle();
+      }catch(bundleErr){
+        console.warn("bots.json indisponível, usando fallback por .md:", bundleErr);
+        bots = await loadFromMarkdownFiles();
+      }
+      // Em alta primeiro, mantendo a ordem original dentro de cada grupo
       bots.sort((a,b) => (b.featured === true) - (a.featured === true));
       loaded = true;
       runSearch();
@@ -103,7 +134,7 @@
     }
   }
 
-  /* ---------- Renderização ---------- */
+  /* ---------- Renderização paginada ---------- */
   function initials(name){
     return name.split(" ").filter(Boolean).slice(0,2).map(w=>w[0]).join("").toUpperCase();
   }
@@ -139,8 +170,37 @@
     );
   }
 
-  function render(list, isSearch){
-    if(!list.length){
+  function ensureObserver(){
+    if(observer) return;
+    sentinel = document.createElement("div");
+    sentinel.id = "scrollSentinel";
+    sentinel.setAttribute("aria-hidden","true");
+    observer = new IntersectionObserver((entries) => {
+      if(entries.some(e => e.isIntersecting)) renderMore();
+    }, { rootMargin: "600px 0px" });
+  }
+
+  function renderMore(){
+    if(visibleCount >= currentList.length) return;
+    visibleCount = Math.min(visibleCount + PAGE_SIZE, currentList.length);
+    paintList();
+  }
+
+  function paintList(){
+    const slice = currentList.slice(0, visibleCount);
+    resultsEl.innerHTML = slice.map(cardHTML).join("");
+    if(visibleCount < currentList.length){
+      resultsEl.appendChild(sentinel);
+      observer.observe(sentinel);
+    }else{
+      observer.unobserve(sentinel);
+      if(sentinel.parentNode) sentinel.parentNode.removeChild(sentinel);
+    }
+  }
+
+  function renderCurrent(){
+    ensureObserver();
+    if(!currentList.length){
       resultsEl.classList.add("hidden");
       resultsEl.innerHTML = "";
       emptyEl.classList.add("visible");
@@ -153,18 +213,24 @@
     resultsEl.classList.remove("hidden");
     sectionLabel.style.display = "";
     sectionLabel.textContent = I18N.t(isSearch ? "sections.results" : "sections.featured");
-    resultsEl.innerHTML = list.map(cardHTML).join("");
+    paintList();
   }
 
   function runSearch(){
     const q = input.value.trim().toLowerCase();
-    if(!q){ render(bots, false); return; }
-    render(bots.filter(b =>
-      b.name.toLowerCase().includes(q) ||
-      b.username.toLowerCase().includes(q) ||
-      b.description.toLowerCase().includes(q) ||
-      b.tags.some(t => t.toLowerCase().includes(q))
-    ), true);
+    isSearch = !!q;
+    visibleCount = PAGE_SIZE;
+    if(!q){
+      currentList = bots;
+    }else{
+      currentList = bots.filter(b =>
+        b.name.toLowerCase().includes(q) ||
+        b.username.toLowerCase().includes(q) ||
+        b.description.toLowerCase().includes(q) ||
+        b.tags.some(t => t.toLowerCase().includes(q))
+      );
+    }
+    renderCurrent();
   }
 
   /* ---------- Busca ---------- */
