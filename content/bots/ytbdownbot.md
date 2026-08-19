@@ -1,5 +1,5 @@
 ---
-name: 5 ° - YoutubeDL
+name: YoutubeDL
 username: YtbDownBot
 description: Baixe mídia da maioria dos sites.‌‌
 image: images/bots/YtbDownBot.png
