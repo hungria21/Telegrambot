@@ -2,7 +2,7 @@
 name: Public Link Bot
 username: Tg2extbot
 description: Este bot pode fornecer links de download externos para seus arquivos do telegram.
-image: images/bots/Tg2extbot.png
+image: images/bots/tg2extbot.png
 color: ["#DDE879", "#BECF22"]
 tags: [linkdireto, arquivos, download]
 featured: false

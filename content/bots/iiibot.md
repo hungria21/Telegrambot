@@ -2,7 +2,7 @@
 name: 893° - Xo Game
 username: iiiBot
 description: você pode jogar XO com seus amigos ou pode jogar com o bot
-image: images/bots/iiiBot.png
+image: images/bots/iiibot.png
 color: ["#BFE076", "#8EBB2A"]
 tags: [jogos, xo]
 featured: false

@@ -2,7 +2,7 @@
 name: Soccer LiveScores Bot
 username: LiveScoresPyBot
 description: Resultados ao vivo de futebol com alta cobertura de times populares do mundo
-image: images/bots/LiveScoresPyBot.png
+image: images/bots/livescorespybot.png
 color: ["#73D4E3", "#25ABC0"]
 tags: [gols, futebol]
 featured: false

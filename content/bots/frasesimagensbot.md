@@ -2,7 +2,7 @@
 name: Frases
 username: FrasesImagensBot
 description: Encontre frases bonitas para o momento que você está passando
-image: images/bots/FrasesImagensBot.png
+image: images/bots/frasesimagensbot.png
 color: ["#DF54C8", "#A51E8F"]
 tags: [frases]
 featured: false

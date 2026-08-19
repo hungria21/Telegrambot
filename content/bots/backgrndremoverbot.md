@@ -2,7 +2,7 @@
 name: Background Remover Bot
 username: BackGrndRemoverBot
 description: Este bot pode ajudá-lo a remover o fundo das imagens
-image: images/bots/BackGrndRemoverBot.png
+image: images/bots/backgrndremoverbot.png
 color: ["#A868DC", "#7127AC"]
 tags: [removebg]
 featured: false

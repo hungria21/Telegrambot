@@ -2,7 +2,7 @@
 name: Paimon
 username: EmergencyFood_Bot
 description: Encontre informações úteis sobre Genshin Impact
-image: images/bots/EmergencyFood_Bot.png
+image: images/bots/emergencyfood_bot.png
 color: ["#81DEBE", "#31BE8E"]
 tags: [inline, jogos, estatísticas, genshinimpact]
 featured: false

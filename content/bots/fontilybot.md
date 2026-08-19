@@ -2,7 +2,7 @@
 name: 678° - Fontily
 username: FontilyBot
 description: Gere fontes de texto extravagantes para sua frase em inglês!
-image: images/bots/FontilyBot.png
+image: images/bots/fontilybot.png
 color: ["#E275E4", "#C025C4"]
 tags: [inline, texto, fontes]
 featured: false

@@ -2,7 +2,7 @@
 name: Insta Saver
 username: InstaSaveGBot
 description: Baixe post do instagram, reels e igtv gratuitamente.
-image: images/bots/InstaSaveGBot.png
+image: images/bots/instasavegbot.png
 color: ["#5DE38E", "#1EB154"]
 tags: [insta, reels]
 featured: false

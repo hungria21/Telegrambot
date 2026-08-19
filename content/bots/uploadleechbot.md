@@ -2,7 +2,7 @@
 name: Leech Pro ⚡
 username: UploadLeechBot
 description: Com esse bot você pode fazer download de aquivos e baixar arquivos Torrents!
-image: images/bots/UploadLeechBot.png
+image: images/bots/uploadleechbot.png
 color: ["#D058E1", "#991EAA"]
 tags: [download, torrent, arquivos]
 featured: false

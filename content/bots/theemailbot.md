@@ -2,7 +2,7 @@
 name: Temp-Mail Bot
 username: TheEmailBot
 description: Gerador de e-mail temporário e caixa de correio
-image: images/bots/TheEmailBot.png
+image: images/bots/theemailbot.png
 color: ["#BA53E4", "#821AAD"]
 tags: [email, temporário]
 featured: false

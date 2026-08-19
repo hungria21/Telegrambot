@@ -2,7 +2,7 @@
 name: Link Lite Bot
 username: LinkLiteBot
 description: Este bot pode ajudá-lo a encurtar links
-image: images/bots/LinkLiteBot.png
+image: images/bots/linklitebot.png
 color: ["#C262E8", "#911BBF"]
 tags: [link, encurtador]
 featured: false

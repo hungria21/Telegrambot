@@ -2,7 +2,7 @@
 name: 96° - Sticker Tag Bot
 username: StickerTagBot
 description: Esse bot permite que você marque adesivos e os encontre rapidamente mais tarde usando a pesquisa embutida.
-image: images/bots/StickerTagBot.png
+image: images/bots/stickertagbot.png
 color: ["#E4779F", "#C52660"]
 tags: [stickers, tags]
 featured: false

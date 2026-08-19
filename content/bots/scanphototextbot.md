@@ -2,7 +2,7 @@
 name: 828° - Photo to Text
 username: ScanPhotoTextBot
 description: Com esse bot você pode obter o texto de imagens!
-image: images/bots/ScanPhotoTextBot.png
+image: images/bots/scanphototextbot.png
 color: ["#DCE667", "#B2BE1F"]
 tags: [ocr, texto]
 featured: false

@@ -2,7 +2,7 @@
 name: EasyStrongPasswordBot
 username: EasyStrongPasswordBot
 description: Gerador de senhas fortes e fáceis de lembrar.
-image: images/bots/EasyStrongPasswordBot.png
+image: images/bots/easystrongpasswordbot.png
 color: ["#E5D54D", "#A99A18"]
 tags: [senha]
 featured: false

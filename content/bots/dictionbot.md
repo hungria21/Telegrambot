@@ -2,7 +2,7 @@
 name: Dictionary Bot
 username: DictionBot
 description: Basta digitar qualquer palavra em inglês para obter o melhor resultado do dicionário.
-image: images/bots/DictionBot.png
+image: images/bots/dictionbot.png
 color: ["#D37DE3", "#AE29C7"]
 tags: [inline, inglês, dicionário]
 featured: false

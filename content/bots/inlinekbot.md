@@ -2,7 +2,7 @@
 name: Inline Keyboard
 username: InlineKBot
 description: Com este bot você pode criar botões usando o modo inline.
-image: images/bots/InlineKBot.png
+image: images/bots/inlinekbot.png
 color: ["#DF7DE6", "#C126CC"]
 tags: [inline, botões]
 featured: false

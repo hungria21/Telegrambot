@@ -2,7 +2,7 @@
 name: Emilia
 username: EmiliaHikariBot
 description: Bot de gerenciamento de grupo com recursos extras úteis e divertidos!
-image: images/bots/EmiliaHikariBot.png
+image: images/bots/emiliahikaribot.png
 color: ["#DCD368", "#ADA227"]
 tags: [administração]
 featured: false

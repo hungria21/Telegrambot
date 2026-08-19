@@ -5,7 +5,7 @@ description: Apenas um simples bot.
 Baixe vídeo do YouTube. 
 Salve texto no Pastebin.
 Gere um link Telegraph em resposta a uma imagem.
-image: images/bots/TheMultiDlBot.png
+image: images/bots/themultidlbot.png
 color: ["#5C6BE1", "#1F2FAE"]
 tags: [youtube, telegraph]
 featured: false

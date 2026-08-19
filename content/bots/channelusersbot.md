@@ -2,7 +2,7 @@
 name: 980° - Channel Users Bot
 username: ChannelUsersBot
 description: Este bot envia uma mensagem para você sempre que um usuário entra ou sai do seu canal
-image: images/bots/ChannelUsersBot.png
+image: images/bots/channelusersbot.png
 color: ["#75E254", "#3DAA1C"]
 tags: [alerta, canais, inscritos]
 featured: false

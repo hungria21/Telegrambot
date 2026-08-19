@@ -2,7 +2,7 @@
 name: Mr Youtube
 username: MrYoutubeROBOT
 description: Usando este bot, você pode baixar facilmente vídeos do YouTube com diferentes qualidades.
-image: images/bots/MrYoutubeROBOT.png
+image: images/bots/mryoutuberobot.png
 color: ["#B3E860", "#7EBD1B"]
 tags: [youtube]
 featured: false

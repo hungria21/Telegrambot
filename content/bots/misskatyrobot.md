@@ -2,7 +2,7 @@
 name: MissKaty
 username: MissKatyRoBot
 description: bot rápido de gerenciamento de grupo com muitos recursos.
-image: images/bots/MissKatyRoBot.png
+image: images/bots/misskatyrobot.png
 color: ["#A66DE1", "#6E25B9"]
 tags: [inline, administração]
 featured: false

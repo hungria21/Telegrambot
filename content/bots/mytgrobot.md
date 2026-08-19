@@ -2,7 +2,7 @@
 name: My Telegram Bot
 username: MyTGrobot
 description: Bot multiuso que contém um grande número de ferramentas diferentes.
-image: images/bots/MyTGrobot.png
+image: images/bots/mytgrobot.png
 color: ["#997BE7", "#5324CE"]
 tags: [inline, multiuso]
 featured: false

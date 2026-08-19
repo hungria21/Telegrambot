@@ -2,7 +2,7 @@
 name: Refor Bot
 username: reforBot
 description: Com este bot você pode criar um formulário para coletar respostas!
-image: images/bots/reforBot.png
+image: images/bots/reforbot.png
 color: ["#E077BB", "#BD2A89"]
 tags: [formulário, pesquisar]
 featured: false

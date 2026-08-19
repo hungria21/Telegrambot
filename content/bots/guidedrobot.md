@@ -2,7 +2,7 @@
 name: Gentle Breath — Mindful Guidance
 username: GuidedRobot
 description: Escolha um exercício de respiração e sinta-se calmo.
-image: images/bots/GuidedRobot.png
+image: images/bots/guidedrobot.png
 color: ["#D4DC87", "#B0BC36"]
 tags: [miniapp, meditacão, bemestar, relaxamento]
 featured: false

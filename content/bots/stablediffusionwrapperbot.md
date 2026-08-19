@@ -2,7 +2,7 @@
 name: Stable Diffusion Generator
 username: StableDiffusionWrapperBot
 description: Usando este bot você pode gerar imagens incríveis através de textos.
-image: images/bots/StableDiffusionWrapperBot.png
+image: images/bots/stablediffusionwrapperbot.png
 color: ["#9266E3", "#5620B9"]
 tags: [ia, stablediffusion]
 featured: false

@@ -2,7 +2,7 @@
 name: 317° - Notebot
 username: NoteOfficialBot
 description: Use este bot para salvar e armazenar qualquer texto em uma nota.
-image: images/bots/NoteOfficialBot.png
+image: images/bots/noteofficialbot.png
 color: ["#53B5E3", "#1B7DAA"]
 tags: [anotações]
 featured: false

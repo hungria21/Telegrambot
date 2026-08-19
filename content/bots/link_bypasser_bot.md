@@ -2,7 +2,7 @@
 name: Link Bypasser
 username: Link_Bypasser_Bot
 description: Um bot para desencurtar vários links!
-image: images/bots/Link_Bypasser_Bot.png
+image: images/bots/link_bypasser_bot.png
 color: ["#7AD6E8", "#22B4D0"]
 tags: [link, desencurtador]
 featured: false

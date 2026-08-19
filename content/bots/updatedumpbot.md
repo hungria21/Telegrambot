@@ -2,7 +2,7 @@
 name: Update Dump Bot
 username: UpdateDumpBot
 description: Este bot mostra a estrutura json das mensagens
-image: images/bots/UpdateDumpBot.png
+image: images/bots/updatedumpbot.png
 color: ["#D070DE", "#A329B6"]
 tags: [json]
 featured: false

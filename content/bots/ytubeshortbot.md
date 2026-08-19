@@ -2,7 +2,7 @@
 name: YouTube Shorts Save Bot
 username: YTubeShortBot
 description: Com este bot, você pode baixar vídeos do YouTube Shorts
-image: images/bots/YTubeShortBot.png
+image: images/bots/ytubeshortbot.png
 color: ["#E68575", "#C83B23"]
 tags: [youtube]
 featured: false

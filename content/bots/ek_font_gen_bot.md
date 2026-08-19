@@ -2,7 +2,7 @@
 name: Font Generator
 username: EK_Font_Gen_Bot
 description: Este bot pode ajudá-lo a obter fontes elegantes. Basta enviar algum texto e ver a magia.
-image: images/bots/EK_Font_Gen_Bot.png
+image: images/bots/ek_font_gen_bot.png
 color: ["#D8E380", "#B6C82B"]
 tags: [texto, fontetipográfica]
 featured: false

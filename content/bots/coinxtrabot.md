@@ -3,7 +3,7 @@ name: coinXtra
 username: coinXtrabot
 description: Bot que exibe taxas de criptomoedas
  Conversão de uma moeda para outra
-image: images/bots/coinXtrabot.png
+image: images/bots/coinxtrabot.png
 color: ["#67E4BC", "#20BA89"]
 tags: [criptomoeda]
 featured: false

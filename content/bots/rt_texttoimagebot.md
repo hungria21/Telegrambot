@@ -2,7 +2,7 @@
 name: TextToImage
 username: RT_TextToImageBot
 description: Este bot pode converter texto em uma imagem.
-image: images/bots/RT_TextToImageBot.png
+image: images/bots/rt_texttoimagebot.png
 color: ["#5F83D9", "#264BA2"]
 tags: [texto, converter]
 featured: false

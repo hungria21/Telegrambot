@@ -2,7 +2,7 @@
 name: AmimeWatch
 username: AmimeWatchBot
 description: Assista anime via streaming no Telegram e muito mais!
-image: images/bots/AmimeWatchBot.png
+image: images/bots/amimewatchbot.png
 color: ["#8DE256", "#55AA1D"]
 tags: [inline, anime, reverse]
 featured: false

@@ -2,7 +2,7 @@
 name: 865° - MEGA Uploader X⚡️
 username: MegaUploadXbot
 description: Com este bot você pode fazer upload de arquivos e link direto para sua conta mega.nz
-image: images/bots/MegaUploadXbot.png
+image: images/bots/megauploadxbot.png
 color: ["#DE6BCE", "#B3279F"]
 tags: [mega, linkdireto, arquivos]
 featured: false

@@ -2,7 +2,7 @@
 name: 830° - Group Music Bot
 username: VCPlayBot
 description: Este bot permite que você toque música em seus grupos. adicione o assistente @VCPlayRoBot
-image: images/bots/VCPlayBot.png
+image: images/bots/vcplaybot.png
 color: ["#D89370", "#AA582E"]
 tags: [musica, youtube, chatdevoz]
 featured: false

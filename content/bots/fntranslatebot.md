@@ -2,7 +2,7 @@
 name: Translator Bot
 username: FnTranslateBot
 description: Traduza mensagens facilmente no Telegram.
-image: images/bots/FnTranslateBot.png
+image: images/bots/fntranslatebot.png
 color: ["#75E19C", "#28BE5E"]
 tags: [tradutor]
 featured: false

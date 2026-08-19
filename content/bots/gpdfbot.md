@@ -2,7 +2,7 @@
 name: PdfBot
 username: Gpdfbot
 description: Bot multiuso, Converta diferentes arquivos em Pdf.
-image: images/bots/Gpdfbot.png
+image: images/bots/gpdfbot.png
 color: ["#6B8CE5", "#214CBE"]
 tags: [pdf, multiuso]
 featured: false

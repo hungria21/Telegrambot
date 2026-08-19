@@ -2,7 +2,7 @@
 name: Chess Now
 username: ChessNowBot
 description: Participe de emocionantes partidas de xadrez com amigos, ou membros de grupos no telegram
-image: images/bots/ChessNowBot.png
+image: images/bots/chessnowbot.png
 color: ["#DE6D9E", "#B32864"]
 tags: [jogos, xadrez]
 featured: false

@@ -2,7 +2,7 @@
 name: ZuckGram | FB Downloader
 username: ZuckGramBot
 description: Baixe imagens ou vídeos do Facebook facilmente.
-image: images/bots/ZuckGramBot.png
+image: images/bots/zuckgrambot.png
 color: ["#67D769", "#2AA32C"]
 tags: [facebook]
 featured: false

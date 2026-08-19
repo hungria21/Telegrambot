@@ -2,7 +2,7 @@
 name: Discuss Unpin Bot
 username: DiscussUnpinBot
 description: Este bot pode desafixar mensagens em seu grupo quando você postar no canal conectado.
-image: images/bots/DiscussUnpinBot.png
+image: images/bots/discussunpinbot.png
 color: ["#73A6E8", "#216ACA"]
 tags: [unpin, antifixar]
 featured: false

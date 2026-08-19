@@ -2,7 +2,7 @@
 name: Crie Figurinhas
 username: CrieFigBot
 description: Este bot pode ajudá-lo a criar Pack de stickers no telegram
-image: images/bots/CrieFigBot.png
+image: images/bots/criefigbot.png
 color: ["#DE7C6D", "#B33A28"]
 tags: [stickers]
 featured: false

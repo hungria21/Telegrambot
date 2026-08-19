@@ -2,7 +2,7 @@
 name: WinTen Genosida
 username: WinTenKickBot
 description: Este bot pode remover membros inativos do seu grupo.
-image: images/bots/WinTenKickBot.png
+image: images/bots/wintenkickbot.png
 color: ["#A9DC60", "#72A824"]
 tags: [limpeza, administração]
 featured: false

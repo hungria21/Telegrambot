@@ -2,7 +2,7 @@
 name: Spooky Party
 username: SpookyPartyBot
 description: Este é um jogo de festa assustador para pessoas assustadoras.
-image: images/bots/SpookyPartyBot.png
+image: images/bots/spookypartybot.png
 color: ["#955AE5", "#5C1BB3"]
 tags: [jogo, assustador]
 featured: false

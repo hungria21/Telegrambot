@@ -2,7 +2,7 @@
 name: Multi Utilities - Offline 🔴
 username: MultiUtilitiesBot
 description: Este bot tem várias funções que você pode usar.
-image: images/bots/MultiUtilitiesBot.png
+image: images/bots/multiutilitiesbot.png
 color: ["#76B6DD", "#2D83B6"]
 tags: [offline, qrcode, hastebin, multiuso]
 featured: false

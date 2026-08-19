@@ -2,7 +2,7 @@
 name: PinWeather
 username: PinWeatherbot
 description: Com este bot você pode saber como está o tempo na sua cidade!
-image: images/bots/PinWeatherbot.png
+image: images/bots/pinweatherbot.png
 color: ["#78DDAA", "#2DB872"]
 tags: [clima]
 featured: false

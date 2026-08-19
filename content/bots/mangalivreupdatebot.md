@@ -2,7 +2,7 @@
 name: MangaLivre
 username: MangaLivreupdatebot
 description: Receba alertas de novos capítulos de manga
-image: images/bots/MangaLivreupdatebot.png
+image: images/bots/mangalivreupdatebot.png
 color: ["#D3DB67", "#A1AA28"]
 tags: [mangá]
 featured: false

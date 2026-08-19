@@ -2,7 +2,7 @@
 name: QR Bot
 username: theQRbot
 description: Usando este bot você pode criar e escanear código QR.
-image: images/bots/theQRbot.png
+image: images/bots/theqrbot.png
 color: ["#636FDF", "#2330AF"]
 tags: [qrcode]
 featured: false

@@ -2,7 +2,7 @@
 name: AiMage
 username: AiMageToolsBot
 description: Este bot pode gerar imagens com base em descrições.
-image: images/bots/AiMageToolsBot.png
+image: images/bots/aimagetoolsbot.png
 color: ["#DB70A3", "#AF2C6A"]
 tags: [stablediffusion]
 featured: false

@@ -2,7 +2,7 @@
 name: Anya Forger
 username: Anya_ForgerRobot
 description: um bot de gerenciamento de grupo avançado e divertido.
-image: images/bots/Anya_ForgerRobot.png
+image: images/bots/anya_forgerrobot.png
 color: ["#74CBDB", "#2D9DB2"]
 tags: [administração]
 featured: false

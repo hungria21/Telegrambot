@@ -2,7 +2,7 @@
 name: Video Sticker Bot
 username: VideoToStickerBot
 description: Com este bot você pode criar pack de Stickers de vídeos!
-image: images/bots/VideoToStickerBot.png
+image: images/bots/videotostickerbot.png
 color: ["#8B73E1", "#4828BB"]
 tags: [videostickers]
 featured: false

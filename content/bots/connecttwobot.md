@@ -2,7 +2,7 @@
 name: Connect Two
 username: ConnectTwoBot
 description: Você pode usar este bot para conversar anonimamente com pessoas aleatórias.
-image: images/bots/ConnectTwoBot.png
+image: images/bots/connecttwobot.png
 color: ["#E88064", "#C13F1B"]
 tags: [comunicação, anônimo]
 featured: false

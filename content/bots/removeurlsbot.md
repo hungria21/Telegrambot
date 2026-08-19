@@ -2,7 +2,7 @@
 name: RemoveURLsBot
 username: RemoveURLsBot
 description: Este bot remove todas as mensagens de não administradores que contenham uma URL.
-image: images/bots/RemoveURLsBot.png
+image: images/bots/removeurlsbot.png
 color: ["#59DAAB", "#23A073"]
 tags: [antispam]
 featured: false

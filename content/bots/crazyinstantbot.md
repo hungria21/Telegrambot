@@ -2,7 +2,7 @@
 name: Crazy Instant Link Bot
 username: CrazyInstantBot
 description: Este bot gera link de download direto dos arquivos do Telegram.
-image: images/bots/CrazyInstantBot.png
+image: images/bots/crazyinstantbot.png
 color: ["#65E6B0", "#1EBD7B"]
 tags: [linkdireto, arquivos, download]
 featured: false

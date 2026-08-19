@@ -2,7 +2,7 @@
 name: Tag Morty
 username: TagMortyBot
 description: adicione legenda dinâmica à música, basta adicionar o bot a um canal como administrador e dar as permissões.
-image: images/bots/TagMortyBot.png
+image: images/bots/tagmortybot.png
 color: ["#53C6E4", "#1A8EAD"]
 tags: [musica, tags]
 featured: false

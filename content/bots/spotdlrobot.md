@@ -2,7 +2,7 @@
 name: 336° - Spotify Downloader
 username: Spotdlrobot
 description: Baixe músicas do Spotify, Deezer e Youtube Music.
-image: images/bots/Spotdlrobot.png
+image: images/bots/spotdlrobot.png
 color: ["#5ADE56", "#23A51F"]
 tags: [inline, musica, spotify, deezer, youtube]
 featured: false

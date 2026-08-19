@@ -2,7 +2,7 @@
 name: VEmoji Bot
 username: VEmojiBot
 description: Usando este bot você pode pesquisar vídeos usando emoji.
-image: images/bots/VEmojiBot.png
+image: images/bots/vemojibot.png
 color: ["#69D5A0", "#2CA268"]
 tags: [inline, emoji, videomeme]
 featured: false

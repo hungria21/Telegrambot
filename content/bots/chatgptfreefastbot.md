@@ -2,7 +2,7 @@
 name: Chat Gpt Bot
 username: ChatGptFreeFastBot
 description: Este bot usa o ChatGPT para responder as suas mensagens.
-image: images/bots/ChatGptFreeFastBot.png
+image: images/bots/chatgptfreefastbot.png
 color: ["#DC5AE2", "#A71EAE"]
 tags: [chatgpt]
 featured: false

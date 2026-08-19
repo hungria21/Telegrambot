@@ -2,7 +2,7 @@
 name: Flickz
 username: FlickzBot
 description: Este bot pode ajudá-lo a encontrar e compartilhar GIFs
-image: images/bots/FlickzBot.png
+image: images/bots/flickzbot.png
 color: ["#6BE579", "#21BF34"]
 tags: [inline, gif, tenor]
 featured: false

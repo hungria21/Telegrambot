@@ -2,7 +2,7 @@
 name: Files Store Bot
 username: MediasStoreBot
 description: Um simples bot para armazenamento de arquivos!
-image: images/bots/MediasStoreBot.png
+image: images/bots/mediasstorebot.png
 color: ["#7FDEA7", "#2FBE6B"]
 tags: [linkdireto]
 featured: false

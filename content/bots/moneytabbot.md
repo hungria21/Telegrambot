@@ -2,7 +2,7 @@
 name: MoneyTab
 username: MoneyTabBot
 description: Acompanhe as assinaturas e despesas compartilhadas.
-image: images/bots/MoneyTabBot.png
+image: images/bots/moneytabbot.png
 color: ["#8DDA5B", "#55A223"]
 tags: [miniapp, dívidas, despesas, dinheiro]
 featured: false

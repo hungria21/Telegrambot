@@ -2,7 +2,7 @@
 name: Frenchly
 username: FrenchlyBot
 description: Aprenda francês de forma divertida e interativa iniciando um bate-papo com o Frenchly
-image: images/bots/FrenchlyBot.png
+image: images/bots/frenchlybot.png
 color: ["#D3DA7A", "#AAB331"]
 tags: [estudo, francês]
 featured: false

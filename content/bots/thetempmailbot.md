@@ -2,7 +2,7 @@
 name: Temporary Mail
 username: TheTempMailbot
 description: Serviço de e-mail temporário descartável
-image: images/bots/TheTempMailbot.png
+image: images/bots/thetempmailbot.png
 color: ["#E27FBA", "#C62B86"]
 tags: [email]
 featured: false
