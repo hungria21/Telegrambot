@@ -8,7 +8,7 @@ from telethon import utils
 from telethon.errors import RPCError
 from telethon.extensions import BinaryReader
 from widget_tl import InputMediaWidget, MessageMediaWidget
-from bot import process_html_content, handle_document
+from bot import process_html_content, handle_document, create_bot_client
 
 
 def test_input_media_widget_serialization():
@@ -73,6 +73,14 @@ def test_process_html_content():
 
     latin1_bytes = "<h1>Olá Mundo</h1>".encode('latin-1')
     assert process_html_content(latin1_bytes) == "<h1>Olá Mundo</h1>"
+
+
+def test_create_bot_client_userbot_mode():
+    client_bot = create_bot_client(api_id=123, api_hash="abc", bot_token="token", use_userbot=False)
+    assert client_bot is not None
+
+    client_userbot = create_bot_client(api_id=123, api_hash="abc", use_userbot=True, session_string="")
+    assert client_userbot is not None
 
 
 @pytest.mark.asyncio

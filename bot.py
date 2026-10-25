@@ -1,12 +1,13 @@
 """
-Telegram Bot for rendering Layer 233 HTML Widgets.
+Telegram Bot / Userbot for rendering Layer 233 HTML Widgets.
 
-This bot accepts HTML files sent by users and renders them using
-Telegram Layer 233 InputMediaWidget.
+This script accepts HTML files sent by users or in saved messages and renders
+them using Telegram Layer 233 InputMediaWidget.
 """
 
 import logging
 from telethon import TelegramClient, events
+from telethon.sessions import StringSession
 from telethon.errors import RPCError
 
 import config
@@ -89,22 +90,43 @@ async def handle_document(event):
         await status_msg.edit(f"Erro ao tentar renderizar o widget HTML: {e}")
 
 
-def create_bot_client(api_id: int = config.API_ID, api_hash: str = config.API_HASH, bot_token: str = config.BOT_TOKEN) -> TelegramClient:
-    """Create and configure TelegramClient for the bot."""
-    client = TelegramClient('widget_bot_session', api_id, api_hash)
+def create_bot_client(
+    api_id: int = config.API_ID,
+    api_hash: str = config.API_HASH,
+    bot_token: str = config.BOT_TOKEN,
+    use_userbot: bool = config.USE_USERBOT,
+    session_string: str = config.SESSION_STRING
+) -> TelegramClient:
+    """Create and configure TelegramClient for bot or userbot mode."""
+    if use_userbot or session_string:
+        session = StringSession(session_string) if session_string else 'widget_userbot_session'
+        client = TelegramClient(session, api_id, api_hash)
+    else:
+        client = TelegramClient('widget_bot_session', api_id, api_hash)
+
     client.add_event_handler(handle_start, events.NewMessage(pattern=r'^/start'))
     client.add_event_handler(handle_document, events.NewMessage(func=lambda e: bool(e.document)))
     return client
 
 
 def main():
-    if not (config.API_ID and config.API_HASH and config.BOT_TOKEN):
-        print("Erro: API_ID, API_HASH e BOT_TOKEN devem ser fornecidos em config.py ou via variáveis de ambiente.")
+    if not (config.API_ID and config.API_HASH):
+        print("Erro: API_ID e API_HASH devem ser fornecidos em config.py ou via variáveis de ambiente.")
         return
 
     client = create_bot_client()
-    client.start(bot_token=config.BOT_TOKEN)
-    logger.info("Bot de renderização de Widget HTML rodando...")
+
+    if config.USE_USERBOT or config.SESSION_STRING:
+        logger.info("Iniciando client em modo Userbot (Conta de Usuário)...")
+        client.start(phone=config.PHONE_NUMBER if config.PHONE_NUMBER else None)
+    else:
+        if not config.BOT_TOKEN:
+            print("Erro: BOT_TOKEN deve ser fornecido para rodar como bot, ou ative USE_USERBOT=True / SESSION_STRING.")
+            return
+        logger.info("Iniciando client em modo Bot Token...")
+        client.start(bot_token=config.BOT_TOKEN)
+
+    logger.info("Cliente Telegram de renderização de Widget HTML rodando...")
     client.run_until_disconnected()
 
 
