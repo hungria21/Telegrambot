@@ -5,22 +5,15 @@ This bot accepts HTML files sent by users and renders them using
 Telegram Layer 233 InputMediaWidget.
 """
 
-import os
 import logging
 from telethon import TelegramClient, events
 from telethon.errors import RPCError
+
+import config
 from widget_tl import InputMediaWidget
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-
-API_ID = int(os.environ.get("API_ID", "0"))
-API_HASH = os.environ.get("API_HASH", "")
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
-
-# Default widget dimensions
-WIDGET_WIDTH = int(os.environ.get("WIDGET_WIDTH", "300"))
-WIDGET_HEIGHT = int(os.environ.get("WIDGET_HEIGHT", "200"))
 
 
 def process_html_content(raw_bytes: bytes) -> str:
@@ -70,8 +63,8 @@ async def handle_document(event):
             return
 
         widget_media = InputMediaWidget(
-            width=WIDGET_WIDTH,
-            height=WIDGET_HEIGHT,
+            width=config.WIDGET_WIDTH,
+            height=config.WIDGET_HEIGHT,
             html=html_content
         )
 
@@ -96,7 +89,7 @@ async def handle_document(event):
         await status_msg.edit(f"Erro ao tentar renderizar o widget HTML: {e}")
 
 
-def create_bot_client(api_id: int = API_ID, api_hash: str = API_HASH, bot_token: str = BOT_TOKEN) -> TelegramClient:
+def create_bot_client(api_id: int = config.API_ID, api_hash: str = config.API_HASH, bot_token: str = config.BOT_TOKEN) -> TelegramClient:
     """Create and configure TelegramClient for the bot."""
     client = TelegramClient('widget_bot_session', api_id, api_hash)
     client.add_event_handler(handle_start, events.NewMessage(pattern=r'^/start'))
@@ -105,12 +98,12 @@ def create_bot_client(api_id: int = API_ID, api_hash: str = API_HASH, bot_token:
 
 
 def main():
-    if not (API_ID and API_HASH and BOT_TOKEN):
-        print("Erro: API_ID, API_HASH e BOT_TOKEN devem ser fornecidos via variáveis de ambiente.")
+    if not (config.API_ID and config.API_HASH and config.BOT_TOKEN):
+        print("Erro: API_ID, API_HASH e BOT_TOKEN devem ser fornecidos em config.py ou via variáveis de ambiente.")
         return
 
     client = create_bot_client()
-    client.start(bot_token=BOT_TOKEN)
+    client.start(bot_token=config.BOT_TOKEN)
     logger.info("Bot de renderização de Widget HTML rodando...")
     client.run_until_disconnected()
 
