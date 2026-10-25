@@ -2,11 +2,13 @@
 Tests for Layer 233 Widget TL Objects and Bot logic.
 """
 
+from unittest.mock import AsyncMock, MagicMock
 import pytest
 from telethon import utils
+from telethon.errors import RPCError
 from telethon.extensions import BinaryReader
 from widget_tl import InputMediaWidget, MessageMediaWidget
-from bot import process_html_content
+from bot import process_html_content, handle_document
 
 
 def test_input_media_widget_serialization():
@@ -71,3 +73,29 @@ def test_process_html_content():
 
     latin1_bytes = "<h1>Olá Mundo</h1>".encode('latin-1')
     assert process_html_content(latin1_bytes) == "<h1>Olá Mundo</h1>"
+
+
+@pytest.mark.asyncio
+async def test_handle_document_rpc_error_not_allowed():
+    event = MagicMock()
+    message = MagicMock()
+    event.message = message
+    event.chat_id = 123456
+    message.id = 1
+    message.document = MagicMock()
+    message.file.name = "widget.html"
+    message.file.mime_type = "text/html"
+    message.download_media = AsyncMock(return_value=b"<h1>Test</h1>")
+
+    status_msg = MagicMock()
+    status_msg.edit = AsyncMock()
+    event.respond = AsyncMock(return_value=status_msg)
+
+    rpc_err = RPCError(request=None, message="INPUT_MEDIA_WIDGET_NOT_ALLOWED", code=400)
+    message.client.send_file = AsyncMock(side_effect=rpc_err)
+
+    await handle_document(event)
+
+    status_msg.edit.assert_called_once()
+    args, _ = status_msg.edit.call_args
+    assert "INPUT_MEDIA_WIDGET_NOT_ALLOWED" in args[0]

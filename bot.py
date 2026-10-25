@@ -8,6 +8,7 @@ Telegram Layer 233 InputMediaWidget.
 import os
 import logging
 from telethon import TelegramClient, events
+from telethon.errors import RPCError
 from widget_tl import InputMediaWidget
 
 logging.basicConfig(level=logging.INFO)
@@ -81,8 +82,17 @@ async def handle_document(event):
         )
         await status_msg.delete()
 
+    except RPCError as e:
+        logger.exception("RPCError ao renderizar widget HTML")
+        if "INPUT_MEDIA_WIDGET_NOT_ALLOWED" in str(e):
+            await status_msg.edit(
+                "O servidor do Telegram retornou `INPUT_MEDIA_WIDGET_NOT_ALLOWED`.\n"
+                "A renderização de widgets da Layer 233 (`inputMediaWidget`) não é permitida para esta conta ou servidor no momento."
+            )
+        else:
+            await status_msg.edit(f"Erro de RPC do Telegram ao tentar renderizar o widget: {e.message or e}")
     except Exception as e:
-        logger.exception("Erro ao renderizar widget HTML")
+        logger.exception("Erro inesperado ao renderizar widget HTML")
         await status_msg.edit(f"Erro ao tentar renderizar o widget HTML: {e}")
 
 
