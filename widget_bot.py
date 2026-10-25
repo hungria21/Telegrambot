@@ -16,12 +16,20 @@ import random
 import re
 import struct
 
+import telethon.client.telegrambaseclient as _base
+import telethon.tl.alltlobjects as _alltlobjects
 from telethon import TelegramClient, events
+from telethon.tl.functions import InvokeWithLayerRequest
+from telethon.tl.functions.messages import SaveDraftRequest, SendMediaRequest
 from telethon.tl.tlobject import TLObject
-from telethon.tl.functions.messages import SendMediaRequest
-from telethon.tl.alltlobjects import tlobjects
 
 import config
+
+# ---------- força o layer 233 no Telethon ----------
+
+LAYER = int(getattr(config, "FORCE_LAYER", 233))
+_alltlobjects.LAYER = LAYER
+_base.LAYER = LAYER
 
 
 # ---------- tipos TL escritos à mão ----------
@@ -212,9 +220,9 @@ class MessageReplyHeader233(TLObject):
 
 
 # Registra os construtores customizados no registro de tipos do Telethon
-tlobjects[InputMediaWidget.CONSTRUCTOR_ID] = InputMediaWidget
-tlobjects[MessageMediaWidget.CONSTRUCTOR_ID] = MessageMediaWidget
-tlobjects[MessageReplyHeader233.CONSTRUCTOR_ID] = MessageReplyHeader233
+_alltlobjects.tlobjects[InputMediaWidget.CONSTRUCTOR_ID] = InputMediaWidget
+_alltlobjects.tlobjects[MessageMediaWidget.CONSTRUCTOR_ID] = MessageMediaWidget
+_alltlobjects.tlobjects[MessageReplyHeader233.CONSTRUCTOR_ID] = MessageReplyHeader233
 
 
 # Mantém SendWidgetRequest por compatibilidade / conveniência, usando o SendMediaRequest nativo
@@ -233,10 +241,6 @@ class SendWidgetRequest(SendMediaRequest):
 
 
 # ---------- userbot ----------
-
-if getattr(config, "FORCE_LAYER", None):
-    import telethon.client.telegrambaseclient as _base
-    _base.LAYER = int(config.FORCE_LAYER)
 
 client = TelegramClient("widget_user", getattr(config, "API_ID", 0), getattr(config, "API_HASH", ""))
 
@@ -280,12 +284,36 @@ async def on_file(event):
 
     html = (await event.download_media(bytes)).decode("utf-8", errors="replace")
     w, h = sizes.get(event.chat_id, DEFAULT_SIZE)
+    media = InputMediaWidget(w, h, html)
+
+    chat_peer = await event.get_input_chat()
+    req = SendWidgetRequest(peer=chat_peer, media=media)
+
     try:
-        await client(SendWidgetRequest(
-            peer=await event.get_input_chat(),
-            media=InputMediaWidget(w, h, html),
-        ))
+        await client(InvokeWithLayerRequest(layer=LAYER, query=req))
+        return
     except Exception as e:
+        err_msg = str(e)
+        if "INPUT_MEDIA_WIDGET_NOT_ALLOWED" in err_msg:
+            # Tenta enviar para Mensagens Salvas ("me") se o chat atual não for permitido
+            try:
+                self_peer = await client.get_input_entity("me")
+                req_self = SendWidgetRequest(peer=self_peer, media=media)
+                await client(InvokeWithLayerRequest(layer=LAYER, query=req_self))
+                await event.reply("Widget criado e enviado para Mensagens Salvas (não permitido no chat atual).")
+                return
+            except Exception:
+                pass
+
+            # Tenta salvar como rascunho no chat atual
+            try:
+                draft_req = SaveDraftRequest(peer=chat_peer, message="", media=media)
+                await client(InvokeWithLayerRequest(layer=LAYER, query=draft_req))
+                await event.reply("Widget salvo como rascunho no chat.")
+                return
+            except Exception:
+                pass
+
         await event.reply(f"O servidor recusou o widget:\n{type(e).__name__}: {e}")
 
 
