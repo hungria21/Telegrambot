@@ -4,7 +4,7 @@ from telethon.extensions import BinaryReader
 from telethon.tl.alltlobjects import tlobjects
 from telethon.tl.types import InputPeerSelf
 
-from widget_bot import InputMediaWidget, MessageMediaWidget, SendWidgetRequest
+from widget_bot import InputMediaWidget, MessageMediaWidget, MessageReplyHeader233, SendWidgetRequest
 
 
 class TestWidgetTL(unittest.TestCase):
@@ -15,6 +15,8 @@ class TestWidgetTL(unittest.TestCase):
         self.assertEqual(tlobjects[InputMediaWidget.CONSTRUCTOR_ID], InputMediaWidget)
         self.assertIn(MessageMediaWidget.CONSTRUCTOR_ID, tlobjects)
         self.assertEqual(tlobjects[MessageMediaWidget.CONSTRUCTOR_ID], MessageMediaWidget)
+        self.assertIn(MessageReplyHeader233.CONSTRUCTOR_ID, tlobjects)
+        self.assertEqual(tlobjects[MessageReplyHeader233.CONSTRUCTOR_ID], MessageReplyHeader233)
 
     def test_input_media_widget_serialization(self):
         """Testa serialização e desserialização de InputMediaWidget."""
@@ -54,6 +56,19 @@ class TestWidgetTL(unittest.TestCase):
         self.assertEqual(parsed.width, 300)
         self.assertEqual(parsed.height, 450)
         self.assertEqual(parsed.payload, payload)
+
+    def test_message_reply_header_233_deserialization(self):
+        """Testa a desserialização de MessageReplyHeader233 (0xDDB5AB75)."""
+        raw = b"u\xab\xb5\xdd\x10\x00\x00\x00\xcc4\x00\x00"
+        reader = BinaryReader(raw)
+        header = reader.tgread_object()
+
+        self.assertIsInstance(header, MessageReplyHeader233)
+        self.assertEqual(header.reply_to_msg_id, 13516)
+
+        # Testa round-trip de bytes
+        roundtrip = header._bytes()
+        self.assertEqual(roundtrip, raw)
 
     def test_send_widget_request_bytes(self):
         """Testa a construção de SendWidgetRequest com e sem random_id explícito."""
