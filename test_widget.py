@@ -1,5 +1,6 @@
 import io
 import unittest
+from telethon import utils
 from telethon.extensions import BinaryReader
 from telethon.tl.alltlobjects import tlobjects
 from widget_bot import InputMediaWidget, MessageMediaWidget, parse_dimensions_and_html
@@ -12,6 +13,11 @@ class TestWidgetBot(unittest.TestCase):
         self.assertIn(MessageMediaWidget.CONSTRUCTOR_ID, tlobjects)
         self.assertEqual(tlobjects[InputMediaWidget.CONSTRUCTOR_ID], InputMediaWidget)
         self.assertEqual(tlobjects[MessageMediaWidget.CONSTRUCTOR_ID], MessageMediaWidget)
+
+    def test_telethon_get_input_media_cast(self):
+        widget = InputMediaWidget(width=360, height=500, html="<h1>Test</h1>")
+        casted = utils.get_input_media(widget)
+        self.assertIs(casted, widget)
 
     def test_input_media_widget_serialization(self):
         widget = InputMediaWidget(width=360, height=500, html="<h1>Test</h1>")

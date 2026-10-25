@@ -25,7 +25,7 @@ logger = logging.getLogger('WidgetBot')
 
 class InputMediaWidget(TLObject):
     CONSTRUCTOR_ID = 0x297da8f8
-    SUBCLASS_OF_ID = 0xf33f885  # InputMedia
+    SUBCLASS_OF_ID = 0xfaf846f4  # InputMedia crc32
 
     def __init__(self, width: int, height: int, html: str):
         self.width = int(width)
@@ -50,7 +50,7 @@ class InputMediaWidget(TLObject):
 
 class MessageMediaWidget(TLObject):
     CONSTRUCTOR_ID = 0xb7ed7b0d
-    SUBCLASS_OF_ID = 0xa8fd52f5  # MessageMedia
+    SUBCLASS_OF_ID = 0x476cbe32  # MessageMedia crc32
 
     def __init__(self, width: int, height: int, payload: bytes):
         self.width = int(width)
