@@ -10,6 +10,8 @@ from telethon.tl.alltlobjects import tlobjects
 from telethon.tl.tlobject import TLObject
 from telethon.tl.functions.messages import SendMediaRequest
 
+import config
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
@@ -96,7 +98,11 @@ def parse_dimensions_and_html(html_text: str, default_width: int = 360, default_
     return width, height, html_text
 
 
-async def create_widget_bot(bot_token: str, api_id: int = 6, api_hash: str = 'eb06630f012e128d16156365b2b00d90') -> TelegramClient:
+async def create_widget_bot(bot_token: str = None, api_id: int = None, api_hash: str = None) -> TelegramClient:
+    bot_token = bot_token or config.BOT_TOKEN
+    api_id = api_id or config.API_ID
+    api_hash = api_hash or config.API_HASH
+
     client = TelegramClient('widget_bot_session', api_id, api_hash)
 
     @client.on(events.NewMessage(pattern='/start'))
@@ -154,20 +160,15 @@ async def create_widget_bot(bot_token: str, api_id: int = 6, api_hash: str = 'eb
 
 
 if __name__ == '__main__':
-    bot_token = os.environ.get('BOT_TOKEN')
-    if not bot_token:
-        print("Error: BOT_TOKEN environment variable is required.")
+    if not config.BOT_TOKEN:
+        print("Error: BOT_TOKEN is required in config.py or environment.")
         sys.exit(1)
 
-    api_id = int(os.environ.get('TELEGRAM_API_ID', 6))
-    api_hash = os.environ.get('TELEGRAM_API_HASH', 'eb06630f012e128d16156365b2b00d90')
-
     print("Starting Widget Bot...")
-    client = TelegramClient('widget_bot_session', api_id, api_hash)
 
     async def run():
-        bot = await create_widget_bot(bot_token, api_id=api_id, api_hash=api_hash)
-        await bot.start(bot_token=bot_token)
+        bot = await create_widget_bot(config.BOT_TOKEN, api_id=config.API_ID, api_hash=config.API_HASH)
+        await bot.start(bot_token=config.BOT_TOKEN)
         me = await bot.get_me()
         print(f"Bot running as @{me.username} (ID: {me.id})")
         await bot.run_until_disconnected()
